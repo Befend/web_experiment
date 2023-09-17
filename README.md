@@ -1,2 +1,7 @@
-# web_experiment
-some experiment about web testing.
+# 前端试验
+
+关于前端一些试验实践的过程记录。
+
+## 实践库
+
+### 1. 动态表单实现
