@@ -80,9 +80,9 @@ module.exports = {
 
     config.when(isProd(), (config) => {
       // 去除 console
-      Object.assign(config.optimization.minimizer[0].options.terserOptions.compress, {
-        drop_console: true
-      })
+      // Object.assign(config.optimization.minimizer[0].options.terserOptions.compress, {
+      //   drop_console: true
+      // })
 
       config
         .plugin('ScriptExtHtmlWebpackPlugin')
