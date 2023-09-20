@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'Page404',
+  name: 'PageError',
   computed: {
     message() {
       return '请检查你的 URL 地址是否正确，或者点击下方按钮返回首页。'

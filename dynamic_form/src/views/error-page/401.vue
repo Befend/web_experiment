@@ -2,7 +2,7 @@
 import errGif from '@/assets/images/401.gif'
 
 export default {
-  name: 'Page401',
+  name: 'PageNoRoot',
   data() {
     return {
       errGif: errGif + '?' + Number(new Date())

@@ -1,51 +1,51 @@
 /**
  * header的cookie解析
  */
-const pairSplitRegExp = /; */;
-const decode = decodeURIComponent;
+const pairSplitRegExp = /; */
+const decode = decodeURIComponent
 function tryDecode(str, decode) {
   try {
-    return decode(str);
+    return decode(str)
   } catch (e) {
-    return str;
+    return str
   }
 }
 
 function cookieParse(str, options) {
   if (typeof str !== 'string') {
-    throw new TypeError('argument str must be a string');
+    throw new TypeError('argument str must be a string')
   }
 
-  const obj = {};
-  const opt = options || {};
-  const pairs = str.split(pairSplitRegExp);
-  const dec = opt.decode || decode;
+  const obj = {}
+  const opt = options || {}
+  const pairs = str.split(pairSplitRegExp)
+  const dec = opt.decode || decode
 
   for (let i = 0; i < pairs.length; i++) {
-    const pair = pairs[i];
-    let eq_idx = pair.indexOf('=');
+    const pair = pairs[i]
+    let eq_idx = pair.indexOf('=')
 
     if (eq_idx < 0) {
-      continue;
+      continue
     }
-    const key = pair.substr(0, eq_idx).trim();
-    let val = pair.substr(++eq_idx, pair.length).trim();
+    const key = pair.substr(0, eq_idx).trim()
+    let val = pair.substr(++eq_idx, pair.length).trim()
     // eslint-disable-next-line
     if ('"' == val[0]) {
-      val = val.slice(1, -1);
+      val = val.slice(1, -1)
     }
     // eslint-disable-next-line
     if (undefined == obj[key]) {
-      obj[key] = tryDecode(val, dec);
+      obj[key] = tryDecode(val, dec)
     }
   }
-  return obj;
+  return obj
 }
 
 function setCookie(cname, cvalue, exdays = 0.1) {
-  const d = new Date();
-  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-  const expires = 'expires=' + d.toGMTString();
+  const d = new Date()
+  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000)
+  const expires = 'expires=' + d.toGMTString()
   if (process.env.VUE_APP_SSO_AUTH === 'yzt_ssjd') {
     /**
      * 和其他平台集成时无法设置cookie
@@ -53,39 +53,39 @@ function setCookie(cname, cvalue, exdays = 0.1) {
      * document.cookie = cname + "=" + cvalue + "; " + expires+"; SameSite=None; Secure";
      * 2.使用sessionStorage代替cookie
      */
-    sessionStorage.setItem(cname, cvalue);
+    sessionStorage.setItem(cname, cvalue)
   } else {
-    document.cookie = cname + '=' + cvalue + '; ' + expires;
+    document.cookie = cname + '=' + cvalue + '; ' + expires
   }
 }
 function getCookie(cname) {
-  let ca;
+  let ca
   if (process.env.VUE_APP_SSO_AUTH === 'yzt_ssjd') {
-    return sessionStorage.getItem(cname);
+    return sessionStorage.getItem(cname)
   } else {
-    const name = cname + '=';
-    ca = document.cookie.split(';');
+    const name = cname + '='
+    ca = document.cookie.split(';')
     for (let i = 0; i < ca.length; i++) {
-      const c = ca[i].trim();
+      const c = ca[i].trim()
       if (c.indexOf(name) === 0) {
-        return c.substring(name.length, c.length);
+        return c.substring(name.length, c.length)
       }
     }
   }
-  return '';
+  return ''
 }
 function checkCookie() {
-  const user = getCookie('username');
+  const user = getCookie('username')
   if (user !== '') {
     // alert("欢迎 " + user + " 再次访问");
   } else {
     // user = prompt("请输入你的名字:","");
     if (user !== '' && user !== null) {
       if (process.env.VUE_APP_SSO_AUTH !== 'yzt_ssjd') {
-        setCookie('username', user, 30);
+        setCookie('username', user, 30)
       }
     }
   }
 }
 
-export { cookieParse, setCookie, getCookie, checkCookie };
+export { cookieParse, setCookie, getCookie, checkCookie }
