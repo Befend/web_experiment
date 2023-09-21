@@ -11,11 +11,11 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "element-ui": "2.15.14",
     "script-ext-html-webpack-plugin": "^2.1.5",
     "vue": "^2.7.14",
     "vue-router": "3.6.5",
     "vuex": "^4.1.0",
-    "element-ui": "2.15.14",
     "webpack": "^5.82.1"
   },
   "devDependencies": {
@@ -29,6 +29,8 @@
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
     "html-webpack-plugin": "^5.5.1",
+    "monaco-editor": "^0.43.0",
+    "monaco-editor-webpack-plugin": "^7.1.0",
     "prettier": "^2.8.7",
     "resource-hint-webpack-plugin": "^1.2.1",
     "sass": "^1.67.0",
